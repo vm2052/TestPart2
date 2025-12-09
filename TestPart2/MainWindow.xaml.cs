@@ -23,6 +23,7 @@ namespace TestPart2
             InitializeComponent();
             
         }
+        //сохраняем когда заканчиваем редактировать значение
         private void VariablesDataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             if (e.EditAction != DataGridEditAction.Commit) return;

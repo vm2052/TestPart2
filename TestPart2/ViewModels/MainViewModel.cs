@@ -18,47 +18,21 @@ namespace TestPart2.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         
-        private EnvironmentVariable? _selectedVariable;
-        private string _statusMessage = "Готово";
-
         private ObservableCollection<EnvironmentVariable> _environmentVariables;
-        public ObservableCollection<EnvironmentVariable> EnvironmentVariables {
-          get { return _environmentVariables; }
-            set { _environmentVariables = value; }
-           }
-
-        public EnvironmentVariable? SelectedVariable
+        public ObservableCollection<EnvironmentVariable> EnvironmentVariables
         {
-            get => _selectedVariable;
+            get
+            {
+                return _environmentVariables;
+            }
             set
             {
-                if (_selectedVariable != value)
-                {
-                    _selectedVariable = value;
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(IsVariableSelected));
-                }
+                _environmentVariables = value;
+                OnPropertyChanged(nameof(EnvironmentVariables));
             }
         }
 
-        public bool IsVariableSelected => SelectedVariable != null;
 
-        public string StatusMessage
-        {
-            get => _statusMessage;
-            set
-            {
-                if (_statusMessage != value)
-                {
-                    _statusMessage = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public ICommand SaveCommand { get; }
-        public ICommand ReloadCommand { get; }
-        public ICommand RefreshListCommand { get; }
         private readonly IEnvironmentVariableService _environmentService;
         private readonly ILogger _logger;
         public MainViewModel(IEnvironmentVariableService environmentService, ILogger logger)
@@ -66,7 +40,7 @@ namespace TestPart2.ViewModels
             _environmentService = environmentService;
             EnvironmentVariables = _environmentService.LoadEnvironmentVariables();
         }
-
+        //сохраняем переменную, вызов из code-behind mainwindow
         public void SaveVariable(EnvironmentVariable variable)
         {
             if (variable == null) return;
