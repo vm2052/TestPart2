@@ -31,8 +31,6 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
                                 >
-
-                        <!-- Minimize Button -->
                         <Button x:Name="MinimizeButton"
                                 Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                 Click="MinimizeButton_Click"
@@ -43,8 +41,6 @@
                                 Cursor="Hand">
                             <Image Source="/Assets/minimize_icon.png"/>
                         </Button>
-
-                        <!-- Close Button -->
                         <Button x:Name="CloseButton"
                                 Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                 Click="CloseButton_Click"
@@ -112,7 +108,7 @@
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Поле" Width="200" Binding="{Binding Name}" />
+                                <DataGridTextColumn Header="Поле" Width="200" IsReadOnly="True"  Binding="{Binding Name}" />
                                 <DataGridTextColumn Header="Значение" Width="200" Binding="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <DataGridTextColumn Header="Комментарий" Width="*" Binding="{Binding Comment}"/>
                             </DataGrid.Columns>
